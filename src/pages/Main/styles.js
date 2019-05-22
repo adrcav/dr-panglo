@@ -33,6 +33,21 @@ export const Container = styled.div`
     p {
         color: white;
         font-size: 1rem;
-        margin: 10px 0;
+        margin: 10px auto;
+        text-align: center;
+
+        @media (max-width: 991px) {
+            width: 80%;
+            display: block;
+        }
+    }
+
+    button {
+        text-align: center;
+        
+        @media (max-width: 768px) {
+            width: 90%;
+            margin: 0 auto;
+        }
     }
 `;
