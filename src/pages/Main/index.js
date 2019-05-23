@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import api from '../../services/api';
-import classNames from 'classnames';
 import { FaEllipsisH } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 import avatar from '../../avatar.png';
 import { Container } from './styles';
@@ -23,7 +22,9 @@ export default class Main extends Component {
                     color: 'white', 
                     marginBottom: '20px' 
                 }} />
-                <ButtonLight className="pulse">Vamos conversar?</ButtonLight>
+                <Link to="/chat">
+                    <ButtonLight className="pulse">Vamos conversar?</ButtonLight>
+                </Link>
             </Container>
         );
     }
