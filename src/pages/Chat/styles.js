@@ -64,6 +64,7 @@ export const Container = styled.div`
             flex: 1;
             overflow-y: auto;
             padding: 5px;
+            position: relative;
         }
 
         .chat-options {

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { IoIosCheckmarkCircleOutline, IoMdSend } from 'react-icons/io';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import ScrollToBottom from 'react-scroll-to-bottom';
 
 import Message from '../../components/Message';
 
@@ -17,7 +18,7 @@ export default class Chat extends Component {
     };
 
     scrollToBottom = () => {
-        this.messagesEnd.scrollIntoView({ behavior: 'smooth' });
+        this.messagesEnd.scrollIntoView({ behavior: 'auto' });
     };
 
     handleSubmit = event => {
@@ -40,7 +41,7 @@ export default class Chat extends Component {
                         <h1>Dr. Panglo <IoIosCheckmarkCircleOutline style={{ fontSize: '1.5rem', margin: '5px 0 0 5px' }} title="Verificado" /></h1>
                         <img src={avatar} alt="Avatar Dr. Panglo" />
                     </div>
-                    <div className="chat-messages">
+                    <ScrollToBottom className="chat-messages">
                         <ReactCSSTransitionGroup
                             transitionName="example"
                             transitionEnterTimeout={350}
@@ -50,11 +51,8 @@ export default class Chat extends Component {
                             <Message msg={message} />
                         ))}
                         </ReactCSSTransitionGroup>
-                        <div 
-                            style={{ marginTop: '10px', width: '50px', height: '3px', backgroundColor: 'green' }}
-                            ref={(el) => { this.messagesEnd = el; }}
-                        ></div>
-                    </div>
+                        <div ref={(el) => { this.messagesEnd = el; }}></div>
+                    </ScrollToBottom>
                     <form className="chat-options" onSubmit={this.handleSubmit}>
                         <input name="message" placeholder="Envie uma mensagem..." required />
                         <button type="submit"><IoMdSend /></button>
