@@ -74,7 +74,7 @@ export default class Chat extends Component {
                         </ReactCSSTransitionGroup>
                     </ScrollToBottom>
                     <form className="chat-options" onSubmit={this.handleSubmit}>
-                        <input name="message" placeholder="Envie uma mensagem..." required />
+                        <input name="message" placeholder="Envie uma mensagem..." autocomplete="off" required />
                         <button type="submit"><IoMdSend /></button>
                     </form>
                 </div>
