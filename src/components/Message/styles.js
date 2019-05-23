@@ -17,6 +17,10 @@ export const MessageCard = styled.div`
         border-radius: 5px;
         background-color: #54467C;
 
+        @media (max-width: 768px) {
+            max-width: 80%;
+        }
+
         p {
             color: white;
             font-size: 1.075rem;

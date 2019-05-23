@@ -11,7 +11,7 @@ export default class Message extends Component {
             <div>
                 
                     <MessageCard className={classNames({
-                        'sender': this.props.msg.sender
+                        'sender': !this.props.msg.sender
                     })}>
                         <div className="message-content">
                             <p>{this.props.msg.text}</p>
