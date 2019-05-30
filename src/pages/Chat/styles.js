@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { animateGradient } from '../../styles/keyframes';
+import { animateGradient, blink, bulge } from '../../styles/keyframes';
 
 export const Container = styled.div`
     width: 100%;
@@ -63,6 +63,7 @@ export const Container = styled.div`
             width: 100%;
             flex: 1;
             overflow-y: auto;
+            overflow-x: hidden;
             padding: 5px;
             position: relative;
         }
@@ -104,6 +105,75 @@ export const Container = styled.div`
                 &:hover {
                     background-color: #22D276;
                 }
+            }
+        }
+    }
+`;
+
+export const Loading = styled.div`
+    position: absolute;
+    bottom: 15px;
+    left: 0;
+    transform: translateX(-110%) scale(.6);
+    transition: all .4s ease-in-out;
+    opacity: 0;
+    visibility: hidden;
+    transition-timing-function: cubic-bezier(.38,.75,.85,.95);
+
+    &.show {
+        visibility: visible;
+        opacity: 1;
+        left: 50%;
+        transform: translateX(-50%) scale(.6);
+    }
+
+    .typing-indicator {
+        background-color: #e6e7ed;
+        will-change: transform;
+        width: auto;
+        border-radius: 50px;
+        padding: 20px;
+        display: table;
+        margin: 0 auto;
+        position: relative;
+        animation: 2s ${bulge} infinite ease-out;
+
+        &:before, &:after {
+            content: "";
+            position: absolute;
+            bottom: -2px;
+            left: -2px;
+            height: 20px;
+            width: 20px;
+            border-radius: 50%;
+            background-color: #e6e7ed;
+        }
+
+        &:after {
+            height: 10px;
+            width: 10px;
+            left: -10px;
+            bottom: -10px;
+        }
+
+        span {
+            height: 15px;
+            width: 15px;
+            float: left;
+            margin: 0 1px;
+            background-color: #9e9ea1;
+            display: block;
+            border-radius: 50%;
+            opacity: 0.4;
+
+            &:nth-of-type(1) {
+                animation: 1s ${blink} infinite 0.3333s;
+            }
+            &:nth-of-type(2) {
+                animation: 1s ${blink} infinite 0.6666s;
+            }
+            &:nth-of-type(3) {
+                animation: 1s ${blink} infinite 0.9999s;
             }
         }
     }

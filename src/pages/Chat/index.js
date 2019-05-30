@@ -3,11 +3,12 @@ import { IoIosCheckmarkCircleOutline, IoMdSend } from 'react-icons/io';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import ScrollToBottom from 'react-scroll-to-bottom';
 import api from '../../services/api';
+import classNames from 'classnames';
 
 import Message from '../../components/Message';
 
 import avatar from '../../avatar-default.png';
-import { Container } from './styles';
+import { Container, Loading } from './styles';
 import './animation.css';
 
 export default class Chat extends Component {
@@ -33,7 +34,11 @@ export default class Chat extends Component {
     sendAndGetWatsonMessage = async text => {
         try {
             this.setState({ loading: true });
+            // Envia mensagem ao IBM Watson
             const response = await api.post('/conversation', { text, context: this.state.context });
+            // Salva mensagem do usuário
+            const save = await api.post('/save', { text, sender: true });
+
             const message = { 
                 text: response.data.output.text[0], 
                 sender: false 
@@ -43,6 +48,9 @@ export default class Chat extends Component {
                 context: response.data.context,
                 loading: false
             });
+
+            // Salva mensagem do Watson
+            const saveWatson = await api.post('/save', message);
         } catch (err) {
             console.log(err);
             alert('Ocorreu um erro ao enviar a mensagem.');
@@ -72,6 +80,15 @@ export default class Chat extends Component {
                             <Message key={index} msg={message} />
                         ))}
                         </ReactCSSTransitionGroup>
+                        <Loading className={classNames({
+                            'show': this.state.loading
+                        })}>
+                            <div className="typing-indicator">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </Loading>
                     </ScrollToBottom>
                     <form className="chat-options" onSubmit={this.handleSubmit}>
                         <input name="message" placeholder="Envie uma mensagem..." autocomplete="off" required />

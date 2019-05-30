@@ -20,3 +20,15 @@ export const shadowPulse = keyframes`
         box-shadow: 0 0 0 20px rgba(0, 0, 0, 0);
     }
 `;
+
+export const blink = keyframes`
+    50% {
+        opacity: 1;
+    }
+`;
+
+export const bulge = keyframes`
+    50% {
+        transform: scale(1.05);
+    }
+`;
