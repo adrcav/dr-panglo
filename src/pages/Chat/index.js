@@ -37,20 +37,23 @@ export default class Chat extends Component {
             // Envia mensagem ao IBM Watson
             const response = await api.post('/conversation', { text, context: this.state.context });
             // Salva mensagem do usuário
-            const save = await api.post('/save', { text, sender: true });
+            await api.post('/save', { text, sender: true });
 
             const message = { 
                 text: response.data.output.text[0], 
                 sender: false 
             };
+
+            console.log(message);
+
+            // Salva mensagem do Watson
+            await api.post('/save', message);
+
             this.setState({ 
                 messages: [...this.state.messages, message],
                 context: response.data.context,
                 loading: false
             });
-
-            // Salva mensagem do Watson
-            const saveWatson = await api.post('/save', message);
         } catch (err) {
             console.log(err);
             alert('Ocorreu um erro ao enviar a mensagem.');
@@ -91,7 +94,7 @@ export default class Chat extends Component {
                         </Loading>
                     </ScrollToBottom>
                     <form className="chat-options" onSubmit={this.handleSubmit}>
-                        <input name="message" placeholder="Envie uma mensagem..." autocomplete="off" required />
+                        <input name="message" placeholder="Envie uma mensagem..." autoComplete="off" required />
                         <button type="submit"><IoMdSend /></button>
                     </form>
                 </div>

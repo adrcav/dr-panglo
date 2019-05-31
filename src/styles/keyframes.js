@@ -29,6 +29,6 @@ export const blink = keyframes`
 
 export const bulge = keyframes`
     50% {
-        transform: scale(1.05);
+        transform: scale(1.1);
     }
 `;
