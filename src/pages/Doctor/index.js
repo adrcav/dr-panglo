@@ -53,7 +53,7 @@ export default class Doctor extends Component {
             <DoctorWrapper>
                 <DoctorProfile>
                     <img src={avatar} alt="Avatar Doctor"/>
-                    <h3>Dr. Sicrano</h3>
+                    <h3>Dr. Panglo</h3>
                 </DoctorProfile>
 
                 <DoctorContainer>
@@ -78,11 +78,11 @@ export default class Doctor extends Component {
                         </p>
                         <p>
                             <span style={{ opacity: 0.8, fontSize: '.8rem' }}>Frequência:</span> 
-                            Semanal
+                            Diária
                         </p>
                         <p>
                             <span style={{ opacity: 0.8, fontSize: '.8rem' }}>Último acesso:</span> 
-                            30/05
+                            02/06
                         </p>
 
                         <ul className="options">
